@@ -217,12 +217,19 @@
       margin: 10px 0;
       border-left: 4px solid var(--accent);
     }
-    
+      .patent-number-link {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+    .patent-number-link:hover .patent-number {
+      color: var(--accent);
+      text-decoration: underline;
+    }
     .patent-number {
       font-weight: 600;
       color: var(--primary);
-    }
-    
+    }  
     /* Projects Table */
     table {
       width: 100%;
@@ -471,6 +478,14 @@
       </a> 
       — Compact Fiber Optic Gyroscope with Feedback-Enhanced Frequency Interferometry
     </div>
+    
+    <div class="patent">
+      <a href="https://patents.google.com/patent/US9476713B2" target="_blank" class="patent-number-link">
+        <span class="patent-number">US 9,476,713-B2</span>
+      </a> 
+      — <em>(Assignee: King Abdulaziz City for Science and Technology)</em><br>
+      <span style="color: var(--gray); font-size: 0.95rem;">View full details on Google Patents</span>
+    </div>
   </section>
 
   <!-- Research Projects & Funding -->
@@ -574,6 +589,7 @@
 </body>
 
 </html>
+
 
 
 
