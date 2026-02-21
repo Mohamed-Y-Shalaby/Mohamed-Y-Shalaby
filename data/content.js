@@ -39,14 +39,14 @@ const cvData = {
 
   // Professional Summary
   summary: {
-    text: "Distinguished researcher and educator with over 35 years of expertise in <strong>nonlinear optics, optical communications, fiber optic sensors, and photonic signal processing</strong>. Ph.D. in Nonlinear Optics from University of Limoges, France (1993). Author of <strong>60+ peer-reviewed publications</strong> with <strong>700+ citations (h-index: 11)</strong>, <strong>10+ funded research projects</strong>, and <strong>9 granted U.S. patents (2024-2025)</strong>. Supervised <strong>15+ graduate students</strong> to completion. Current research focuses on Optical Coherence Tomography, AI-enhanced environmental monitoring, fiber laser systems, and smart energy optimization for Saudi Arabia.",
+    text: "Distinguished researcher and educator with over 35 years of expertise in <strong>nonlinear optics, optical communications, fiber optic sensors, and photonic signal processing</strong>. Ph.D. in Nonlinear Optics from University of Limoges, France (1993). Author of <strong>60+ peer-reviewed publications</strong> with <strong>700+ citations (h-index: 11)</strong>, <strong>10+ funded research projects</strong>, and <strong>9 granted U.S. patents (2024-2025)</strong>. Supervised <strong>120+ graduate students</strong> to completion. Current research focuses on Optical Coherence Tomography, AI-enhanced environmental monitoring, fiber laser systems, and smart energy optimization for Saudi Arabia.",
     metrics: [
       { icon: "fas fa-book", label: "Publications", value: "60+" },
       { icon: "fas fa-quote-right", label: "Citations", value: "700+" },
       { icon: "fas fa-chart-line", label: "h-index", value: "11" },
       { icon: "fas fa-certificate", label: "Patents", value: "9" },
       { icon: "fas fa-project-diagram", label: "Funded Projects", value: "10+" },
-      { icon: "fas fa-user-graduate", label: "Students Supervised", value: "15+" }
+      { icon: "fas fa-user-graduate", label: "Students Supervised", value: "120+" }
     ]
   },
 
