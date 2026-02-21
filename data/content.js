@@ -413,9 +413,9 @@ const cvData = {
       }
     ],
     languages: [
-      { language: "Arabic", flag: "🇸🇦", level: "Native" },
-      { language: "English", flag: "🇬🇧", level: "Fluent (Academic & Technical)" },
-      { language: "French", flag: "🇫🇷", level: "Professional (Research & Thesis)" }
+      { language: "Arabic", code: "SA", icon: "fas fa-language", level: "Native" },
+      { language: "English", code: "GB", icon: "fas fa-globe", level: "Fluent (Academic & Technical)" },
+      { language: "French", code: "FR", icon: "fas fa-language", level: "Professional (Research & Thesis)" }
     ]
   }
 };

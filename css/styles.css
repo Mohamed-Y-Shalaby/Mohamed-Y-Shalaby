@@ -212,6 +212,20 @@ h1 {
 
 .contact-links a:hover { color: var(--primary); text-decoration: underline; }
 
+.profile-photo-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.profile-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .profile-photo {
   width: 220px;
   height: 220px;
@@ -239,20 +253,40 @@ h1 {
               inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-.profile-photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+.language-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 8px;
+  min-width: 30px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .profile-photo { 
+  .profile-photo, .profile-photo-wrapper { 
     width: 180px; 
     height: 180px; 
     font-size: 3rem;
     margin: 0 auto 20px;
   }
+}
+
+/* Language Badge */
+.language-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 8px;
+  min-width: 28px;
+  text-align: center;
 }
 
 /* Sections */

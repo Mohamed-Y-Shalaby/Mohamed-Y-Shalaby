@@ -36,10 +36,13 @@ function renderHeader() {
     ).join('')}
   `;
   
-  // Check if photo exists, otherwise use initials
-  const photoElement = personal.photo ? 
-    `<img src="${personal.photo}" alt="${personal.name}" class="profile-photo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-photo\\'>${personal.name.split(' ').map(n => n[0]).join('')}</div>'">` :
-    `<div class="profile-photo">${personal.name.split(' ').map(n => n[0]).join('')}</div>`;
+  // Create photo element with proper error handling
+  let photoElement = '';
+  if (personal.photo) {
+    photoElement = `<div class="profile-photo-wrapper"><img src="${personal.photo}" alt="${personal.name}" class="profile-photo" id="profilePhoto"></div>`;
+  } else {
+    photoElement = `<div class="profile-photo">${personal.name.split(' ').map(n => n[0]).join('')}</div>`;
+  }
   
   hero.innerHTML = `
     <div>
@@ -55,6 +58,15 @@ function renderHeader() {
     </div>
     ${photoElement}
   `;
+  
+  // Handle photo loading error
+  const profilePhoto = document.getElementById('profilePhoto');
+  if (profilePhoto) {
+    profilePhoto.onerror = function() {
+      const initials = personal.name.split(' ').map(n => n[0]).join('');
+      this.parentElement.innerHTML = `<div class="profile-photo">${initials}</div>`;
+    };
+  }
 }
 
 // Render Professional Summary
@@ -319,7 +331,7 @@ function renderSkills() {
   `).join('');
   
   const languagesHTML = skills.languages.map(lang => 
-    `<li>${lang.flag} <strong>${lang.language}</strong> – ${lang.level}</li>`
+    `<li><span class="language-badge">${lang.code}</span> <strong>${lang.language}</strong> – ${lang.level}</li>`
   ).join('');
   
   section.innerHTML = `
