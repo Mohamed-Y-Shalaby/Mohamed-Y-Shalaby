@@ -164,7 +164,7 @@ function renderPatents() {
   `).join('');
   
   section.innerHTML = `
-    <h2><i class="fas fa-certificate"></i> Granted U.S. Patents (2025)</h2>
+    <h2><i class="fas fa-certificate"></i> Granted U.S. Patents</h2>
     ${patentsHTML}
   `;
 }
