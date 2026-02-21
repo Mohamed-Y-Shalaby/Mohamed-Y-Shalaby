@@ -357,9 +357,37 @@ function renderFooter() {
   `;
 }
 
+// Initialize Tab Functionality
+function initializeTabs() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.getAttribute('data-tab');
+      
+      // Find the parent container
+      const parentContainer = button.closest('.tabs-container');
+      if (!parentContainer) return;
+      
+      // Remove active class from all buttons and contents in this container
+      parentContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      parentContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding content
+      button.classList.add('active');
+      const targetContent = parentContainer.querySelector(`#${targetTab}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+}
+
 // Initialize Interactive Features
 function initializeInteractiveFeatures() {
   initializeMainNavigation();
+  initializeTabs();
   addSmoothScrolling();
   addPrintButton();
   addSearchFilter();

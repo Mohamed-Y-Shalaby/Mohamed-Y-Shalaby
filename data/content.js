@@ -7,7 +7,7 @@ const cvData = {
     institution: "Imam Mohammad Ibn Saud Islamic University",
     department: "Faculty of Engineering",
     location: "Riyadh, Kingdom of Saudi Arabia",
-    photo: "images/Picture1.png",
+    photo: "images/picture1.png",
     emails: [
       { address: "mshalaby88@gmail.com", icon: "fas fa-envelope" },
       { address: "myshalaby@imamu.edu.sa", icon: "fas fa-university" }
