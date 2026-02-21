@@ -43,7 +43,7 @@ const cvData = {
     metrics: [
       { icon: "fas fa-book", label: "Publications", value: "60+" },
       { icon: "fas fa-quote-right", label: "Citations", value: "700+" },
-      { icon: "fas fa-chart-line", label: "h-index", value: "15" },
+      { icon: "fas fa-chart-line", label: "h-index", value: "11" },
       { icon: "fas fa-certificate", label: "Patents", value: "9" },
       { icon: "fas fa-project-diagram", label: "Funded Projects", value: "10+" },
       { icon: "fas fa-user-graduate", label: "Students Supervised", value: "15+" }
