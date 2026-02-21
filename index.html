@@ -15,12 +15,35 @@
 </head>
 <body>
 
-  <!-- Header / Hero Section -->
-  <header>
-    <div class="hero">
-      <!-- Content will be dynamically loaded by JavaScript -->
-    </div>
-  </header>
+  <!-- Dynamic Background -->
+  <div class="dynamic-background">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Header / Hero Section -->
+    <header>
+      <div class="hero">
+        <!-- Content will be dynamically loaded by JavaScript -->
+      </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="main-navigation no-print">
+      <button class="nav-tab active" data-section="all"><i class="fas fa-th"></i> All Sections</button>
+      <button class="nav-tab" data-section="summary"><i class="fas fa-user"></i> Summary</button>
+      <button class="nav-tab" data-section="research"><i class="fas fa-lightbulb"></i> Research</button>
+      <button class="nav-tab" data-section="education"><i class="fas fa-graduation-cap"></i> Education</button>
+      <button class="nav-tab" data-section="experience"><i class="fas fa-briefcase"></i> Experience</button>
+      <button class="nav-tab" data-section="publications"><i class="fas fa-book"></i> Publications</button>
+      <button class="nav-tab" data-section="patents"><i class="fas fa-certificate"></i> Patents</button>
+      <button class="nav-tab" data-section="projects"><i class="fas fa-flask"></i> Projects</button>
+      <button class="nav-tab" data-section="service"><i class="fas fa-hands-helping"></i> Service</button>
+      <button class="nav-tab" data-section="skills"><i class="fas fa-tools"></i> Skills</button>
+    </nav>
 
   <!-- Professional Summary -->
   <section id="summary">
@@ -57,6 +80,11 @@
     <!-- Content will be dynamically loaded -->
   </section>
 
+  <!-- Professional Service -->
+  <section id="service">
+    <!-- Content will be dynamically loaded -->
+  </section>
+
   <!-- Skills & Languages -->
   <section id="skills">
     <!-- Content will be dynamically loaded -->
@@ -66,6 +94,9 @@
   <footer>
     <!-- Content will be dynamically loaded -->
   </footer>
+
+  </div>
+  <!-- End Main Container -->
 
   <!-- External JavaScript Files -->
   <script src="data/content.js"></script>

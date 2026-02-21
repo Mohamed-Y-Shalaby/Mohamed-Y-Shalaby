@@ -16,6 +16,7 @@ function renderCV() {
   renderPublications();
   renderPatents();
   renderProjects();
+  renderProfessionalService();
   renderSkills();
   renderFooter();
 }
@@ -35,6 +36,11 @@ function renderHeader() {
     ).join('')}
   `;
   
+  // Check if photo exists, otherwise use initials
+  const photoElement = personal.photo ? 
+    `<img src="${personal.photo}" alt="${personal.name}" class="profile-photo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'profile-photo\\'>${personal.name.split(' ').map(n => n[0]).join('')}</div>'">` :
+    `<div class="profile-photo">${personal.name.split(' ').map(n => n[0]).join('')}</div>`;
+  
   hero.innerHTML = `
     <div>
       <h1>${personal.name}</h1>
@@ -47,16 +53,27 @@ function renderHeader() {
         ${contactLinksHTML}
       </div>
     </div>
-    <img src="${personal.photo}" alt="${personal.name}" class="profile-photo">
+    ${photoElement}
   `;
 }
 
 // Render Professional Summary
 function renderSummary() {
   const section = document.getElementById('summary');
+  const summary = cvData.summary;
+  
+  const metricsHTML = summary.metrics ? summary.metrics.map(metric => `
+    <div class="metric-card">
+      <div class="metric-icon"><i class="${metric.icon}"></i></div>
+      <span class="metric-value">${metric.value}</span>
+      <div class="metric-label">${metric.label}</div>
+    </div>
+  `).join('') : '';
+  
   section.innerHTML = `
     <h2><i class="fas fa-user"></i> Professional Summary</h2>
-    <p>${cvData.summary}</p>
+    <p>${summary.text || summary}</p>
+    ${metricsHTML ? `<div class="metrics-grid">${metricsHTML}</div>` : ''}
   `;
 }
 
@@ -130,6 +147,14 @@ function renderPublications() {
       pubContent += `, ${pub.pages}`;
     }
     
+    // Add quality indicators
+    const indicators = [];
+    if (pub.quartile) indicators.push(`<strong>${pub.quartile}</strong>`);
+    if (pub.impactFactor) indicators.push(`IF: ${pub.impactFactor}`);
+    if (indicators.length > 0) {
+      pubContent += ` [${indicators.join(', ')}]`;
+    }
+    
     pubContent += `.</div>`;
     
     if (pub.url) {
@@ -141,7 +166,7 @@ function renderPublications() {
   }).join('');
   
   section.innerHTML = `
-    <h2><i class="fas fa-book"></i> Selected Publications (2020–2026)</h2>
+    <h2><i class="fas fa-book"></i> Selected Publications (2021–2026)</h2>
     ${publicationsHTML}
     <p style="margin-top:15px">
       <a href="https://scholar.google.com/citations?user=vuQSzBYAAAAJ&hl=en" target="_blank" class="pub-link">
@@ -199,28 +224,121 @@ function renderProjects() {
   `;
 }
 
+// Render Professional Service Section
+function renderProfessionalService() {
+  const section = document.getElementById('service');
+  const service = cvData.professionalService;
+  
+  section.innerHTML = `
+    <h2><i class="fas fa-hands-helping"></i> Professional Service & Contributions</h2>
+    
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        <button class="tab-button active" data-tab="editorial"><i class="fas fa-book-reader"></i> Editorial & Peer Review</button>
+        <button class="tab-button" data-tab="conferences"><i class="fas fa-users"></i> Conferences</button>
+        <button class="tab-button" data-tab="institutional"><i class="fas fa-university"></i> Institutional Service</button>
+      </div>
+      
+      <div id="editorial" class="tab-content active">
+        <div class="service-category">
+          <h4><i class="fas fa-edit"></i> Editorial Boards & Peer Review</h4>
+          <ul>
+            ${service.editorial.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+          <div class="service-stats">
+            <p><strong>Peer Review Statistics:</strong></p>
+            <p>• Total Reviews: ${service.peerReview.totalReviews}</p>
+            <p>• Journals Reviewed For: ${service.peerReview.journals}</p>
+            <p>• Average: ${service.peerReview.avgPerYear}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div id="conferences" class="tab-content">
+        <div class="service-category">
+          <h4><i class="fas fa-chalkboard-teacher"></i> Conference Organization & Participation</h4>
+          <ul>
+            ${service.conferences.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      
+      <div id="institutional" class="tab-content">
+        <div class="service-category">
+          <h4><i class="fas fa-landmark"></i> Institutional & Departmental Service</h4>
+          <ul>
+            ${service.institutional.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Initialize tab functionality
+  initializeTabs();
+}
+
+// Initialize Tab Functionality
+function initializeTabs() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding content
+      button.classList.add('active');
+      document.getElementById(targetTab).classList.add('active');
+    });
+  });
+}
+
 // Render Skills & Languages
 function renderSkills() {
   const section = document.getElementById('skills');
+  const skills = cvData.skills;
   
-  const technicalHTML = cvData.skills.technical.map(skill => `<li>${skill}</li>`).join('');
-  const languagesHTML = cvData.skills.languages.map(lang => 
+  // Create tabs for skills categories
+  const tabsHTML = skills.categories.map((category, index) => 
+    `<button class="tab-button ${index === 0 ? 'active' : ''}" data-tab="skill-${index}">
+      <i class="${category.icon}"></i> ${category.title}
+    </button>`
+  ).join('');
+  
+  const tabContentsHTML = skills.categories.map((category, index) => `
+    <div id="skill-${index}" class="tab-content ${index === 0 ? 'active' : ''}">
+      <ul>
+        ${category.skills.map(skill => `<li>${skill}</li>`).join('')}
+      </ul>
+    </div>
+  `).join('');
+  
+  const languagesHTML = skills.languages.map(lang => 
     `<li>${lang.flag} <strong>${lang.language}</strong> – ${lang.level}</li>`
   ).join('');
   
   section.innerHTML = `
     <h2><i class="fas fa-tools"></i> Skills & Expertise</h2>
-    <div class="skills-grid">
-      <div class="skill-category">
-        <h4><i class="fas fa-microchip"></i> Technical Expertise</h4>
-        <ul>${technicalHTML}</ul>
+    
+    <h3>Technical Skills</h3>
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        ${tabsHTML}
       </div>
-      <div class="skill-category">
-        <h4><i class="fas fa-language"></i> Languages</h4>
-        <ul>${languagesHTML}</ul>
-      </div>
+      ${tabContentsHTML}
     </div>
+    
+    <h3 style="margin-top: 30px;"><i class="fas fa-language"></i> Languages</h3>
+    <ul>${languagesHTML}</ul>
   `;
+  
+  // Re-initialize tabs for skills section
+  initializeTabs();
 }
 
 // Render Footer
@@ -241,9 +359,43 @@ function renderFooter() {
 
 // Initialize Interactive Features
 function initializeInteractiveFeatures() {
+  initializeMainNavigation();
   addSmoothScrolling();
   addPrintButton();
   addSearchFilter();
+}
+
+// Initialize Main Navigation
+function initializeMainNavigation() {
+  const navTabs = document.querySelectorAll('.nav-tab');
+  const sections = document.querySelectorAll('section');
+  
+  navTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetSection = tab.getAttribute('data-section');
+      
+      // Update active tab
+      navTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      
+      // Show/hide sections
+      if (targetSection === 'all') {
+        sections.forEach(section => section.classList.remove('hidden'));
+      } else {
+        sections.forEach(section => {
+          if (section.id === targetSection) {
+            section.classList.remove('hidden');
+            // Smooth scroll to section
+            setTimeout(() => {
+              section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          } else {
+            section.classList.add('hidden');
+          }
+        });
+      }
+    });
+  });
 }
 
 // Smooth scrolling for anchor links
