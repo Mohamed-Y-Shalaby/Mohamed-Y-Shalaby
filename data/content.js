@@ -322,33 +322,6 @@ const cvData = {
     }
   ],
 
-  // Professional Service & Contributions
-  professionalService: {
-    editorial: [
-      "Reviewer, IEEE Access (2020-Present)",
-      "Reviewer, Optics Express (2019-Present)",
-      "Reviewer, Journal of Lightwave Technology (2018-Present)",
-      "Reviewer, Applied Optics (2017-Present)",
-      "Editorial Board Member, International Journal of Optics and Photonics (2021-Present)"
-    ],
-    conferences: [
-      "Technical Program Committee, Saudi International Conference on Photonics (2023-2025)",
-      "Session Chair, SPIE Photonics West - Fiber Optic Sensors (2024)",
-      "Organizing Committee, GCC Optical Communications Workshop (2022-2023)"
-    ],
-    institutional: [
-      "Chair, Department Graduate Studies Committee (2020-2023)",
-      "Member, Faculty Research & Ethics Committee (2015-Present)",
-      "Coordinator, Optics & Photonics Research Group (2014-Present)",
-      "Faculty Senate Representative (2018-2021)"
-    ],
-    peerReview: {
-      totalReviews: "150+",
-      journals: "20+ International Journals",
-      avgPerYear: "15-20 manuscripts/year"
-    }
-  },
-
   // Skills
   skills: {
     categories: [

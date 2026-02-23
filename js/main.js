@@ -16,7 +16,6 @@ function renderCV() {
   renderPublications();
   renderPatents();
   renderProjects();
-  renderProfessionalService();
   renderSkills();
   renderFooter();
 }
@@ -234,60 +233,6 @@ function renderProjects() {
       </tbody>
     </table>
   `;
-}
-
-// Render Professional Service Section
-function renderProfessionalService() {
-  const section = document.getElementById('service');
-  const service = cvData.professionalService;
-  
-  section.innerHTML = `
-    <h2><i class="fas fa-hands-helping"></i> Professional Service & Contributions</h2>
-    
-    <div class="tabs-container">
-      <div class="tabs-nav">
-        <button class="tab-button active" data-tab="editorial"><i class="fas fa-book-reader"></i> Editorial & Peer Review</button>
-        <button class="tab-button" data-tab="conferences"><i class="fas fa-users"></i> Conferences</button>
-        <button class="tab-button" data-tab="institutional"><i class="fas fa-university"></i> Institutional Service</button>
-      </div>
-      
-      <div id="editorial" class="tab-content active">
-        <div class="service-category">
-          <h4><i class="fas fa-edit"></i> Editorial Boards & Peer Review</h4>
-          <ul>
-            ${service.editorial.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-          <div class="service-stats">
-            <p><strong>Peer Review Statistics:</strong></p>
-            <p>• Total Reviews: ${service.peerReview.totalReviews}</p>
-            <p>• Journals Reviewed For: ${service.peerReview.journals}</p>
-            <p>• Average: ${service.peerReview.avgPerYear}</p>
-          </div>
-        </div>
-      </div>
-      
-      <div id="conferences" class="tab-content">
-        <div class="service-category">
-          <h4><i class="fas fa-chalkboard-teacher"></i> Conference Organization & Participation</h4>
-          <ul>
-            ${service.conferences.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-        </div>
-      </div>
-      
-      <div id="institutional" class="tab-content">
-        <div class="service-category">
-          <h4><i class="fas fa-landmark"></i> Institutional & Departmental Service</h4>
-          <ul>
-            ${service.institutional.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  // Initialize tab functionality
-  initializeTabs();
 }
 
 // Initialize Tab Functionality
