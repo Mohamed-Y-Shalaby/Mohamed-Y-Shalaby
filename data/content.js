@@ -12,7 +12,7 @@ const cvData = {
       { address: "mshalaby88@gmail.com", icon: "fas fa-envelope" },
       { address: "myshalaby@imamu.edu.sa", icon: "fas fa-university" }
     ],
-    phone: "+966 530030389",
+    phone: "+966 530030398",
     links: [
       { 
         url: "https://scholar.google.com/citations?user=vuQSzBYAAAAJ&hl=en", 
